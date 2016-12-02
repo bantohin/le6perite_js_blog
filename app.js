@@ -7,5 +7,7 @@ sessionStorage.setItem('authToken', btoa("guest:guest"));
         let appSecret = "62388f7eecea488780b40e25928ef190";
 
         let authService = new AuthService(appId, appSecret);
+        let requester = new Requester();
+        let postModel = new PostModel(baseUrl,appId, requester, authService);
     })
 })();
