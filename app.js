@@ -11,7 +11,7 @@ sessionStorage.setItem('authToken', btoa("guest:guest"));
 
         let postView = new PostView();
         let postModel = new PostModel(baseUrl,appId, requester, authService);
-        let postController = new PostController(postModel, postView);
+        let postController = new PostController(postView, postModel);
 
         postController.listPosts();
     })

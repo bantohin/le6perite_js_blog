@@ -5,9 +5,10 @@ class PostController {
     }
 
     listPosts() {
-        this.model.getPosts()
+        let _self = this;
+        _self.model.getPosts()
             .then(function (successData) {
-                this.view.showPosts(successData);
+                _self.view.showPosts(successData);
             })
             .catch(function (errorData) {
                 //TODO: fill notification
@@ -15,9 +16,10 @@ class PostController {
     }
 
     viewPost(id) {
-        this.model.getPost()
+        let _self = this;
+        _self.model.getPost()
             .then(function (successData) {
-                this.view.showPost(successData);
+                _self.view.showPost(successData);
             })
             .catch(function (errorData) {
                 //TODO: fill notification

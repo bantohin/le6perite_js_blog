@@ -1,6 +1,5 @@
 class PostView {
-    constructor(controller) {
-        this.controller = controller;
+    constructor() {
     }
 
     showPosts(data) {
