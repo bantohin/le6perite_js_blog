@@ -5,19 +5,29 @@ class UserController {
     }
 
     loginUser() {
-        let username = $('#login input[name=username]');
-        let password = $('#login input[name=password]');
-        let userObj = {username, password};
         let _self = this;
+        _self.view.loginUser();
 
-        this.model.loginUser(userObj)
-            .then(function (successData) {
-                console.log(successData);
-                _self.view.loginUser()
-            })
-            .catch(function () {
-                 //TODO: fill notification
-            });
+        $.get('templates/user-templates/loginUser-template.html',function (template) {
+           let button = $('#app').find('#login-btn');
+
+           $(button).on('click', function (template) {
+               let username = $('#app').find('#login input[name=username]').val();
+               let password = $('#app').find('#login input[name=password]').val();
+               let userObj = {username: username, password: password};
+
+               _self.model.loginUser(userObj)
+                   .then(function (successData) {
+                       sessionStorage.setItem('authToken',successData._kmd.authtoken);
+                       sessionStorage.setItem('username',successData.username);
+                       sessionStorage.setItem('id',successData._id);
+                       //TODO: go to Home
+                   })
+                   .catch(function (errorData) {
+                       //TODO: fill notification
+                   });
+           })
+        });
     }
 
     logoutUser() {
@@ -28,24 +38,31 @@ class UserController {
                 console.log(successData);
                 _self.view.logoutUser()
             })
-            .catch(function () {
+            .catch(function (errorData) {
                 //TODO: fill notification
             });
     }
 
     registerUser() {
-        let username = $('#register input[name=username]');
-        let password = $('#register input[name=password]');
-        let userObj = {username, password};
         let _self = this;
+        _self.view.registerUser()
 
-        this.model.registerUser(userObj)
-            .then(function (successData) {
-                console.log(successData);
-                _self.view.registerUser()
-            })
-            .catch(function () {
-                //TODO: fill notification
+        $.get('templates/user-templates/loginUser-template.html',function (template) {
+            let button = $( '#app' ).find( '#register-btn' );
+            $( button ).on( 'click', function () {
+                alert()
+                let username = $( '#app' ).find( '#register input[name=username]' ).val();
+                let password = $( '#app' ).find( '#register input[name=password]' ).val();
+                let userObj = {username: username, password: password};
+
+                _self.model.registerUser( userObj )
+                    .then( function (successData) {
+                        console.log( successData );
+                    } )
+                    .catch( function () {
+                        //TODO: fill notification
+                    } );
             });
+        });
     }
 }

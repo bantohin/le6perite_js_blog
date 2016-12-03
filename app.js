@@ -1,4 +1,3 @@
-sessionStorage.setItem('authToken', btoa("guest:guest"));
 
 (function app() {
     let router = Sammy(function () {
@@ -12,6 +11,10 @@ sessionStorage.setItem('authToken', btoa("guest:guest"));
         let postView = new PostView();
         let postModel = new PostModel(baseUrl,appId, requester, authService);
         let postController = new PostController(postView, postModel);
+
+        let userView = new UserView();
+        let userModel = new UserModel(baseUrl,appId,requester,authService);
+        let userController = new UserController(userModel,userView);
 
         this.get('#/home' , function () {
             //TODO:...
@@ -27,11 +30,11 @@ sessionStorage.setItem('authToken', btoa("guest:guest"));
         });
 
         this.get('#/login',function () {
-            //TODO:...
+            userController.loginUser();
         });
 
         this.get('#/register',function () {
-            //TODO:...
+            userController.registerUser();
         });
         
         this.get('#/logout',function () {

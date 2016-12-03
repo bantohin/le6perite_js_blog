@@ -23,7 +23,7 @@ class UserModel {
     registerUser(data) {
         let requestUrl = this._baseUrl + 'user/' + this._appKey;
         let requestHeaders = this._authService.getHeaders();
-
+        console.log(requestHeaders);
         return this._requester.post(requestUrl, requestHeaders, data);
     }
 }

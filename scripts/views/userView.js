@@ -4,7 +4,10 @@ class UserView {
 
     loginUser() {
         $('#app').empty();
-        let renderedHtml = $.get('../templates/homeTemplate.html');
+        $.get('templates/user-templates/loginUser-template.html',function (template) {
+           let renderedHtml  = Mustache.render(template);
+           $('#app').html(renderedHtml);
+        });
         //TODO: fill notification
     }
 
@@ -16,7 +19,10 @@ class UserView {
 
     registerUser() {
         $('#app').empty();
-        let renderedHtml = $.get('../templates/homeTemplate.html');
+        $.get('templates/user-templates/registerUser-template.html',function (template) {
+            let renderedHtml = Mustache.render(template);
+            $('#app').html(renderedHtml);
+        });
         //TODO: fill notification
     }
 }

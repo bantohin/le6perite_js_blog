@@ -14,7 +14,7 @@ class AuthService {
         };
 
         if(this.isLoggedIn()){
-            headers['Authorization'] = 'Basic ' + this.isLoggedIn();
+            headers['Authorization'] = 'Kinvey ' + this.isLoggedIn();
         }else{
             headers['Authorization'] = 'Basic ' + btoa(this._appKey+":"+this._appSecret);
         }

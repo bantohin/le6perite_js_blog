@@ -7,7 +7,7 @@ class PostView {
         let renderedHtml = "";
         data.forEach(
             function (entity) {
-               $.get('templates/posts-template.html',function (template) {
+               $.get('templates/post-templates/posts-template.html',function (template) {
                    renderedHtml += Mustache.render(template,entity);
                    $('#app').html(renderedHtml);
                })
