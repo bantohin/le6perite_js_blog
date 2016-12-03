@@ -31,11 +31,23 @@ class PostController {
         _self.view.createPost();
         $.get('templates/post-templates/postCreate-template.html', function () {
             $('#createPost-btn').on('click', function () {
+                let today = new Date();
+                let dd = today.getDate();
+                let mm = today.getMonth()+1; //January is 0!
+
+                let yyyy = today.getFullYear();
+                if(dd<10){
+                    dd='0'+dd
+                }
+                if(mm<10){
+                    mm='0'+mm
+                }
+                let today = dd+'/'+mm+'/'+yyyy;
                 let postData = {
                     title: $('#createPost input[name=title]').val(),
-                    text: $('#createPost textarea[name=content]').val(),
-                    date: Date.now(),
-                    author: sessionStorage.getItem('id'),
+                    text: $('#createPost textarea[name=text]').val(),
+                    date: today,
+                    author: sessionStorage.getItem('username'),
                     views: 0,
                     image: $('#createPost input[name=image]').val()
                 };
@@ -48,6 +60,7 @@ class PostController {
                             .catch(function (errorData) {
                                 //TODO
                             });
+                        location.hash = "#/posts"
                     })
                     .catch(function (errorData){
                         //TODO
