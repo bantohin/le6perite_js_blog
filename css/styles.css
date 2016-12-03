@@ -6,6 +6,10 @@
     text-align: center;
 }
 
+a{
+    text-decoration: none;
+}
+
 #app{
     text-align: center;
 }
