@@ -7,7 +7,7 @@ class PostModel {
     }
 
     getPost(id){
-        let requestUrl =  this._baseUrl + 'appdata/' + this._appKey + "/posts" + id;
+        let requestUrl =  this._baseUrl + 'appdata/' + this._appKey + "/posts/" + id;
         let requestHeaders = this._authService.getHeaders();
 
         return this._requester.get(requestUrl, requestHeaders);

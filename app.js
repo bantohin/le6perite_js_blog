@@ -36,7 +36,7 @@ sessionStorage.setItem('authToken', btoa("guest:guest"));
         
         this.get('#/logout',function () {
             //TODO:...
-        })
+        });
 
         //TODO.. #/posts/id
     });
