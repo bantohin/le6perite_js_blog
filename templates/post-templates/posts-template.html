@@ -1,8 +1,10 @@
 <div id="posts" style="text-align: center">
-    <h2>{{author}}</h2>
+    <h2>{{title}}</h2>
     <p>Posted on: <i>{{date}}</i> by {{author}}; Read {{views}} times</p>
     <br>
-    <p>{{text}}</p>
+    <div id="text">
+        <p style="display: block">{{text}}</p>
+    </div>
     <button class="edit-button" data-id="{{_id}}">Edit</button>
     <button class="delete-button" data-id="{{_id}}">Delete</button>
 </div>

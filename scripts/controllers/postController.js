@@ -42,7 +42,7 @@ class PostController {
                 if(mm<10){
                     mm='0'+mm
                 }
-                let today = dd+'/'+mm+'/'+yyyy;
+                today = dd+'/'+mm+'/'+yyyy;
                 let postData = {
                     title: $('#createPost input[name=title]').val(),
                     text: $('#createPost textarea[name=text]').val(),
