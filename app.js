@@ -45,16 +45,20 @@
             userController.logoutUser();
         });
 
+        this.get('#/posts/:id',function () {
+            //editController.editPost(this.params['id']);
+            postController.loadPost(this.params['id']);
+        });
+
         //this.get('#/post/:id',function () {
         //   postView.editPost(this.params['id']);//
         //});
 
         this.bind('editButtonClicked',function (event,data) {
-            console.log(data);
+            location.hash = '#/posts/' + data;
         });
 
         this.bind('deleteCurrentPost',function (event,data) {
-            console.log(data);
             postController.deletePost(data);
         })
 
@@ -62,21 +66,3 @@
 
     router.run('#/home');
 })();
-
-function showHideHeaderButtons() {
-    $('.header a').hide();
-    $('#welcomeSpan').empty();
-    if(sessionStorage.getItem('authToken')) {
-        $('#home-button').show();
-        $('#createPost-button').show();
-        $('#posts-button').show();
-        $('#logout-button').show();
-        $('#welcomeSpan').text('Hello, ' + sessionStorage.getItem('username') + '!');
-    }
-    else {
-        $('#home-button').show();
-        $('#posts-button').show();
-        $('#login-button').show();
-        $('#register-button').show();
-    }
-}

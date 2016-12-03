@@ -29,11 +29,9 @@ class PostController {
     createPost() {
         let _self = this;
         _self.view.createPost();
-        console.log('pesho')
         $.get('templates/post-templates/postCreate-template.html', function (template) {
             $(document).ready(function () {
                 $('#createPost-btn').click(function () {
-                    console.log('check button')
                     let today = new Date();
                     let dd = today.getDate();
                     let mm = today.getMonth()+1; //January is 0!
@@ -74,15 +72,38 @@ class PostController {
         });
     }
 
-    editPost() {
+    loadPost(id) {
+        let _self = this;
+        this.model.loadPost(id)
+            .then(function (data) {
+                _self.view.editPost(data);
+                $.get( 'templates/post-templates/editPost-template.html', function (template) {
+                    $(document).ready(function () {
+                        let buttonEdit = $('#app').find('#edit-btn');
+                        buttonEdit.click(function () {
+                            //TODO:...po4ifka
+                        })
+                    });
+                });
+            })
+                .catch(function (errorData) {
+                alert();
+            });
 
+        //
+        //this.model.editPost(id)
+        //    .then(function (data) {
+        //
+        //    })
+        //    .catch(function (errorData) {
+        //
+        //    })
     }
 
     deletePost(id) {
         let _self = this;
         this.model.deletePost(id)
             .then(function (data) {
-                location.hash = '#/home';
                 location.hash = '#/posts';
             })
             .catch(function (errorData) {

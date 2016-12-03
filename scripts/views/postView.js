@@ -45,8 +45,9 @@ class PostView {
     }
 
     editPost(data) {
+        $('#app').empty();
         $.get('templates/post-templates/editPost-template.html', function (template) {
-            let renderedHtml = Mustache.render(template);
+            let renderedHtml = Mustache.render(template,data);
             $("#app").html(renderedHtml);
         })
     }
