@@ -74,6 +74,14 @@ class PostController {
     }
 
     deletePost(id) {
-        //TODO...
+        let _self = this;
+        this.model.deletePost(id)
+            .then(function (data) {
+                location.hash = '#/home';
+                location.hash = '#/posts';
+            })
+            .catch(function (errorData) {
+
+            })
     }
 }

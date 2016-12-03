@@ -25,8 +25,8 @@ class Requester{
         return _makeRequest('PUT', url, headers, data);
     }
 
-    delete(url, headers, data){
-        return _makeRequest('DELETE', url, headers, data);
+    delete(url, headers){
+        return _makeRequest('DELETE', url, headers, {});
     }
 
 }

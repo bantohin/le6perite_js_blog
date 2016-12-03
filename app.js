@@ -1,4 +1,3 @@
-
 (function app() {
     showHideHeaderButtons();
 
@@ -46,14 +45,22 @@
             userController.logoutUser();
         });
 
-        this.get('#/posts/58420ec4e6d6cc6310894e1e',function () {
+        //this.get('#/post/:id',function () {
+        //   postView.editPost(this.params['id']);//
+        //});
 
+        this.bind('editButtonClicked',function (event,data) {
+            console.log(data);
         });
-        //TODO.. #/posts/id
+
+        this.bind('deleteCurrentPost',function (event,data) {
+            console.log(data);
+            postController.deletePost(data);
+        })
+
     });
 
     router.run('#/home');
-
 })();
 
 function showHideHeaderButtons() {
@@ -68,6 +75,7 @@ function showHideHeaderButtons() {
     }
     else {
         $('#home-button').show();
+        $('#posts-button').show();
         $('#login-button').show();
         $('#register-button').show();
     }

@@ -58,11 +58,11 @@ class UserController {
 
                 _self.model.registerUser( userObj )
                     .then( function (successData) {
-                        showHideHeaderButtons();
                         sessionStorage.setItem('authToken', successData._kmd.authtoken);
                         sessionStorage.setItem('username', successData.username);
                         sessionStorage.setItem('id', successData._id);
                         location.hash = '#/home';
+                        showHideHeaderButtons();
                     })
                     .catch( function () {
                         //TODO: fill notification
