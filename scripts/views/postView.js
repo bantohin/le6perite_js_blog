@@ -3,16 +3,14 @@ class PostView {
     }
 
     showPosts(data) {
+        $('#app').empty();
+        let renderedHtml = "";
         data.forEach(
             function (entity) {
-                let div = $('<div class="post"></div>');
-                div.append('<div>' + entity.author +'</div>');
-                div.append('<div>' + entity.title +'</div>');
-                div.append('<div>' + entity.date +'</div>');
-                div.append('<div>' + entity.views +'</div>');
-                div.append('<div>' + entity.image +'</div>');
-                div.append('<div>' + entity.text +'</div>');
-                div.appendTo('#app');
+               $.get('templates/posts-template.html',function (template) {
+                   renderedHtml += Mustache.render(template,entity);
+                   $('#app').html(renderedHtml);
+               })
             }
         )
     }

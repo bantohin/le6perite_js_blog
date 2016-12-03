@@ -13,6 +13,34 @@ sessionStorage.setItem('authToken', btoa("guest:guest"));
         let postModel = new PostModel(baseUrl,appId, requester, authService);
         let postController = new PostController(postView, postModel);
 
-        postController.listPosts();
-    })
+        this.get('#/home' , function () {
+            //TODO:...
+
+        });
+        
+        this.get('#/posts', function () {
+            postController.listPosts();
+        });
+
+        this.get('#/createPost',function () {
+            //TODO:...
+        });
+
+        this.get('#/login',function () {
+            //TODO:...
+        });
+
+        this.get('#/register',function () {
+            //TODO:...
+        });
+        
+        this.get('#/logout',function () {
+            //TODO:...
+        })
+
+        //TODO.. #/posts/id
+    });
+
+    router.run('#/home');
+
 })();
