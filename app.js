@@ -17,16 +17,15 @@
         let userController = new UserController(userModel,userView);
 
         this.get('#/home' , function () {
-            //TODO:...
-
+            //TODO...
         });
-        
+
         this.get('#/posts', function () {
             postController.listPosts();
         });
 
         this.get('#/createPost',function () {
-            //TODO:...
+            postController.createPost();
         });
 
         this.get('#/login',function () {
@@ -44,6 +43,6 @@
         //TODO.. #/posts/id
     });
 
-    router.run('#/home');
+    router.run('#/login');
 
 })();

@@ -45,23 +45,24 @@ class UserController {
 
     registerUser() {
         let _self = this;
-        _self.view.registerUser()
+        _self.view.registerUser();
 
-        $.get('templates/user-templates/loginUser-template.html',function (template) {
+        $.get('templates/user-templates/registerUser-template.html',function () {
             let button = $( '#app' ).find( '#register-btn' );
             $( button ).on( 'click', function () {
-                alert()
                 let username = $( '#app' ).find( '#register input[name=username]' ).val();
                 let password = $( '#app' ).find( '#register input[name=password]' ).val();
                 let userObj = {username: username, password: password};
 
                 _self.model.registerUser( userObj )
                     .then( function (successData) {
-                        console.log( successData );
-                    } )
+                        sessionStorage.setItem('authToken', successData._kmd.authtoken);
+                        sessionStorage.setItem('username', successData.username);
+                        sessionStorage.setItem('id', successData._id);
+                    })
                     .catch( function () {
                         //TODO: fill notification
-                    } );
+                    });
             });
         });
     }

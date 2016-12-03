@@ -20,7 +20,11 @@ class PostView {
     }
 
     createPost() {
-        //TODO...
+        $('#app').empty();
+        $.get('templates/post-templates/postCreate-template.html', function (template) {
+            let renderedHtml = Mustache.render(template);
+            $('#app').html(renderedHtml);
+        });
     }
 
     editPost() {
