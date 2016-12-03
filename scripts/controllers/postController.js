@@ -109,7 +109,7 @@ class PostController {
         let _self = this;
         this.model.deletePost(id)
             .then(function (data) {
-                location.hash = '#/posts';
+                location.reload();
             })
             .catch(function (errorData) {
 
