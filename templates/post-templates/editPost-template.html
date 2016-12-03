@@ -1,17 +1,17 @@
 <div id="editPost" style="text-align: center">
     <label>
         Title:<br>
-        <input type="text" placeholder="Title" required value={{title}}>
+        <input type="text" placeholder="Title" id="edit-title" required value={{title}}>
     </label>
     <br>
     <label>
         Content:<br>
-        <textarea required placeholder="Post content">{{text}}</textarea>
+        <textarea required id="edit-text" placeholder="Post content">{{text}}</textarea>
     </label>
     <br>
     <label>
         Image link (optional):<br>
-        <input type="text" placeholder="Image link" required/>
+        <input type="text" id="edit-image" placeholder="Image link" required/>
     </label>
     <br>
     <input type="button" value="Edit" id="edit-btn">

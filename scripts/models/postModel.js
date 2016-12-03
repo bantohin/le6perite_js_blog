@@ -36,11 +36,11 @@ class PostModel {
         return this._requester.delete(requestUrl, requestHeaders);
     }
 
-    editPost(id) {
+    editPost(id,data) {
         let requestUrl =  this._baseUrl + 'appdata/' + this._appKey + "/posts/" + id;
         let requestHeaders = this._authService.getHeaders();
 
-        return this._requester.put(requestUrl, requestHeaders, id);
+        return this._requester.put(requestUrl, requestHeaders, data);
     }
 
     loadPost(id){

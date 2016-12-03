@@ -81,7 +81,21 @@ class PostController {
                     $(document).ready(function () {
                         let buttonEdit = $('#app').find('#edit-btn');
                         buttonEdit.click(function () {
-                            //TODO:...po4ifka
+                            let newTitle = $('#app').find('#edit-title').val();
+                            let newText = $('#app').find('#edit-text').val();
+                            let newImage = $('#app').find('#edit-image').val();
+                            let dataObject = {
+                                title: newTitle,
+                                text: newText,
+                                image: newImage
+                            };
+                            _self.model.editPost(id,dataObject)
+                                .then(function (data) {
+                                    location.hash = '#/posts';
+                                 })
+                                .catch(function (errorData) {
+
+                                })
                         })
                     });
                 });
@@ -89,15 +103,6 @@ class PostController {
                 .catch(function (errorData) {
                 alert();
             });
-
-        //
-        //this.model.editPost(id)
-        //    .then(function (data) {
-        //
-        //    })
-        //    .catch(function (errorData) {
-        //
-        //    })
     }
 
     deletePost(id) {
