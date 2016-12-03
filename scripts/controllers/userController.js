@@ -7,11 +7,11 @@ class UserController {
     loginUser() {
         let _self = this;
         _self.view.loginUser();
-
         $.get('templates/user-templates/loginUser-template.html',function (template) {
            let button = $('#app').find('#login-btn');
 
            $(button).on('click', function (template) {
+               console.log('check button')
                let username = $('#app').find('#login input[name=username]').val();
                let password = $('#app').find('#login input[name=password]').val();
                let userObj = {username: username, password: password};

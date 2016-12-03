@@ -13,12 +13,12 @@ class UserView {
 
     logoutUser() {
         $('#app').empty();
-        $.get('templates/user-templates/loginUser-template.html', function(template){
+        $.get('templates/post-templates/posts-template.html', function(template){
             let renderedHtml = Mustache.render(template);
             $("#app").html(renderedHtml);
         });
         //TODO: fill notification
-        //TODO: TODO TODO TODO
+        //TODO: redirect to home
     }
 
     registerUser() {

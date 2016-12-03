@@ -28,6 +28,10 @@
             postController.createPost();
         });
 
+        this.get('#/editPost',function () {
+            postController.editPost();
+        });
+
         this.get('#/login',function () {
             userController.loginUser();
         });

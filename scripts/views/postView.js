@@ -3,6 +3,7 @@ class PostView {
     }
 
     showPosts(data) {
+        let _self = this
         $('#app').empty();
         let renderedHtml = "";
         data.forEach(
@@ -10,6 +11,9 @@ class PostView {
                $.get('templates/post-templates/posts-template.html',function (template) {
                    renderedHtml += Mustache.render(template,entity);
                    $('#app').html(renderedHtml);
+                   $(".edit-button").on('click', function () {
+                       _self.editPost(entity);
+                   })
                })
             }
         )
@@ -27,8 +31,11 @@ class PostView {
         });
     }
 
-    editPost() {
-        //TODO...
+    editPost(data) {
+        $.get('templates/post-templates/editPost-template.html', function (template) {
+            let renderedHtml = Mustache.render(template);
+            $("#app").html(renderedHtml);
+        })
     }
 
     deletePost() {

@@ -56,8 +56,8 @@ class PostController {
         });
     }
 
-    editPost(id, data) {
-        //TODO...
+    editPost() {
+
     }
 
     deletePost(id) {
