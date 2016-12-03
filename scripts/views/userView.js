@@ -12,13 +12,8 @@ class UserView {
     }
 
     logoutUser() {
-        $('#app').empty();
-        $.get('templates/post-templates/posts-template.html', function(template){
-            let renderedHtml = Mustache.render(template);
-            $("#app").html(renderedHtml);
-        });
+            location.hash = '#/home';
         //TODO: fill notification
-        //TODO: redirect to home
     }
 
     registerUser() {

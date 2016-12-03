@@ -9,7 +9,6 @@ class HomeController {
 
         this.model.getTopPosts()
             .then(function (successData) {
-                console.log(successData);
                 let topPosts = [];
                 successData.sort((a,b) => b.views - a.views);
                 for(let i = 0; i < 3; i ++)

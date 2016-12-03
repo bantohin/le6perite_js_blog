@@ -12,7 +12,8 @@ class PostView {
                    renderedHtml += Mustache.render(template,entity);
                    $('#app').html(renderedHtml);
                    $(".edit-button").on('click', function () {
-                       _self.editPost(entity);
+                       let id = $(this).attr('data-id');
+                       //location.hash = '#/edit/' + id;
                    })
                })
             }

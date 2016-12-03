@@ -21,7 +21,7 @@ class UserController {
                        sessionStorage.setItem('authToken',successData._kmd.authtoken);
                        sessionStorage.setItem('username',successData.username);
                        sessionStorage.setItem('id',successData._id);
-                       //TODO: go to Home
+                       location.hash = '#/home';
                    })
                    .catch(function (errorData) {
                        //TODO: fill notification
@@ -59,6 +59,7 @@ class UserController {
                         sessionStorage.setItem('authToken', successData._kmd.authtoken);
                         sessionStorage.setItem('username', successData.username);
                         sessionStorage.setItem('id', successData._id);
+                        location.hash = '#/home';
                     })
                     .catch( function () {
                         //TODO: fill notification

@@ -8,15 +8,17 @@ class PostModel {
 
     getPost(id){
         let requestUrl =  this._baseUrl + 'appdata/' + this._appKey + "/posts/" + id;
-        let requestHeaders = this._authService.getHeaders();
-
+        let requestHeaders = {
+            'Authorization': 'Basic ' + btoa('kid_rygdnrymg:c24558e33f43465fb450b9ad223f3050')
+        };
         return this._requester.get(requestUrl, requestHeaders);
     }
 
     getPosts(){
         let requestUrl =  this._baseUrl + 'appdata/' + this._appKey + "/posts";
-        let requestHeaders = this._authService.getHeaders();
-
+        let requestHeaders = {
+            'Authorization': 'Basic ' + btoa('kid_rygdnrymg:c24558e33f43465fb450b9ad223f3050')
+        };
         return this._requester.get(requestUrl, requestHeaders);
     }
 

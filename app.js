@@ -16,8 +16,12 @@
         let userModel = new UserModel(baseUrl,appId,requester,authService);
         let userController = new UserController(userModel,userView);
 
+        let homeView = new HomeView();
+        let homeModel = new HomeModel(baseUrl,appId,requester,authService);
+        let homeController = new HomeController(homeModel,homeView);
+
         this.get('#/home' , function () {
-            //TODO...
+            homeController.listTopPosts();
         });
 
         this.get('#/posts', function () {
@@ -26,10 +30,6 @@
 
         this.get('#/createPost',function () {
             postController.createPost();
-        });
-
-        this.get('#/editPost',function () {
-            postController.editPost();
         });
 
         this.get('#/login',function () {
@@ -44,9 +44,12 @@
             userController.logoutUser();
         });
 
+        this.get('#/posts/58420ec4e6d6cc6310894e1e',function () {
+
+        });
         //TODO.. #/posts/id
     });
 
-    router.run('#/login');
+    router.run('#/home');
 
 })();
