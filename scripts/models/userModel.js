@@ -16,7 +16,6 @@ class UserModel {
     logoutUser() {
         let requestUrl = this._baseUrl + 'user/' + this._appKey + '/_logout';
         let requestHeaders = this._authService.getHeaders();
-
         return this._requester.post(requestUrl, requestHeaders, {});
     }
 

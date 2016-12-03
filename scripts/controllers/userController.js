@@ -32,16 +32,16 @@ class UserController {
 
     logoutUser() {
         let _self = this;
-
-        this.model.logoutUser()
+        _self.model.logoutUser()
             .then(function (successData) {
-                console.log(successData);
+                sessionStorage.clear()
                 _self.view.logoutUser()
             })
             .catch(function (errorData) {
                 //TODO: fill notification
             });
-    }
+        }
+
 
     registerUser() {
         let _self = this;

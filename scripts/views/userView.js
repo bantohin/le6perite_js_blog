@@ -13,7 +13,10 @@ class UserView {
 
     logoutUser() {
         $('#app').empty();
-        let renderedHtml = $.get('../templates/homeTemplate.html');
+        $.get('../templates/homeTemplate.html', function(template){
+            let renderedHtml = Mustache.render(template);
+            $("#app").html(renderedHtml);
+        });
         //TODO: fill notification
     }
 

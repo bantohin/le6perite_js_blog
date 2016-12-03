@@ -38,7 +38,7 @@
         });
         
         this.get('#/logout',function () {
-            //TODO:...
+            userController.logoutUser();
         });
 
         //TODO.. #/posts/id
