@@ -21,9 +21,9 @@
         let homeModel = new HomeModel(baseUrl,appId,requester,authService);
         let homeController = new HomeController(homeModel,homeView);
 
-        let commentsView = new CommentsView();
-        let commentsModel = new CommentsModel(baseUrl,appId,requester,authService);
-        let commentsController = new CommentsController(commentsView,commentsModel);
+        let detailsView = new DetailsView();
+        let detailsModel = new DetailsModel(baseUrl,appId,requester,authService);
+        let detailsController = new DetailsController(detailsView,detailsModel);
 
         this.get('#/home' , function () {
             homeController.listTopPosts();
@@ -50,17 +50,16 @@
         });
 
         this.get('#/posts/:id',function () {
-            //editController.editPost(this.params['id']);
             postController.loadPost(this.params['id']);
         });
 
-        this.get('#/posts/edit/:id',function () {
-           alert(this.params['id']);
+        this.get('#/posts/details/:id',function () {
+           //alert(this.params['id']);
+           //TODO:...
+           //detailsController.showDetails(this.params['id']);
+            detailsController.showDetails(this.params['id']);
         });
 
-        //this.get('#/post/:id',function () {
-        //   postView.editPost(this.params['id']);//
-        //});
 
         this.bind('editButtonClicked',function (event,data) {
             location.hash = '#/posts/' + data;
@@ -71,7 +70,7 @@
         });
 
         this.bind('readMore', function (event, data) {
-            location.hash = '#/posts/edit/' + data;
+            location.hash = '#/posts/details/' + data;
         })
 
     });
