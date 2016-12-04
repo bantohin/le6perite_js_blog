@@ -32,22 +32,12 @@ class PostController {
         $.get('templates/post-templates/postCreate-template.html', function (template) {
             $(document).ready(function () {
                 $('#createPost-btn').click(function () {
-                    let today = new Date();
-                    let dd = today.getDate();
-                    let mm = today.getMonth()+1; //January is 0!
-
-                    let yyyy = today.getFullYear();
-                    if(dd<10){
-                        dd='0'+dd
-                    }
-                    if(mm<10){
-                        mm='0'+mm
-                    }
-                    today = dd+'/'+mm+'/'+yyyy;
+                    let newDate = new Date(Date.now());
+                    newDate = ((newDate.getMonth() + 1) + '/' + newDate.getDate() + '/' +  newDate.getFullYear());
                     let postData = {
                         title: $('#createPost input[name=title]').val(),
                         text: $('#createPost textarea[name=text]').val(),
-                        date: today,
+                        date: newDate,
                         author: sessionStorage.getItem('username'),
                         views: 0,
                         image: $('#createPost input[name=image]').val()

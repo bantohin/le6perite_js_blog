@@ -3,6 +3,9 @@ class CommentsView {
     }
 
     showComments(data) {
-        $.get('templates/detailedPost-template.html')
+        console.log(data);
+        $.get('templates/detailedPost-template.html',function (template) {
+            let commentDiv = $(template).find('#comments-list');
+        })
     }
 }

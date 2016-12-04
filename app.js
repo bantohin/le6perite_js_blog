@@ -21,6 +21,10 @@
         let homeModel = new HomeModel(baseUrl,appId,requester,authService);
         let homeController = new HomeController(homeModel,homeView);
 
+        let commentsView = new CommentsView();
+        let commentsModel = new CommentsModel(baseUrl,appId,requester,authService);
+        let commentsController = new CommentsController(commentsView,commentsModel);
+
         this.get('#/home' , function () {
             homeController.listTopPosts();
         });
@@ -50,6 +54,10 @@
             postController.loadPost(this.params['id']);
         });
 
+        this.get('#/posts/edit/:id',function () {
+           alert(this.params['id']);
+        });
+
         //this.get('#/post/:id',function () {
         //   postView.editPost(this.params['id']);//
         //});
@@ -63,7 +71,7 @@
         });
 
         this.bind('readMore', function (event, data) {
-            alert('Zdr ui');
+            location.hash = '#/posts/edit/' + data;
         })
 
     });
