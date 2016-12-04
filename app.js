@@ -21,7 +21,7 @@
         let homeModel = new HomeModel(baseUrl,appId,requester,authService);
         let homeController = new HomeController(homeModel,homeView);
 
-        let detailsView = new DetailsView();
+        let detailsView = new DetailsView(authService);
         let detailsModel = new DetailsModel(baseUrl,appId,requester,authService);
         let detailsController = new DetailsController(detailsView,detailsModel);
 

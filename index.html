@@ -27,8 +27,15 @@
     </div>
 
 
-    <footer class="footer">
-        © le6perite blog - js
+
+
+    <footer class="footer" style="position: fixed; left: 0px; bottom: 85px; height: 30px; width: 100%; text-align:center;">
+            <input type="button" value="Hide radio" id="hideRadio" style="float:left; margin-left: 2px"/>
+            <input type="button" value="Show radio" id="showRadio" style="float:left; margin-left: 2px"/>
+            <iframe id="radio" src="http://tunein.com/embed/player/s222291/"
+                    style="width:100%;height:100px;"
+                    scrolling="no" frameborder="no">
+            </iframe>
     </footer>
 
     <script src="scripts/utilities/requester.js"></script>
@@ -46,6 +53,7 @@
     <script src="scripts/controllers/detailsController.js"></script>
     <script src="scripts/models/detailsModel.js"></script>
     <script src="scripts/views/detailsView.js"></script>
+    <script src="scripts/utilities/radio.js"></script>
     <script src="app.js"></script>
 </body>
 
