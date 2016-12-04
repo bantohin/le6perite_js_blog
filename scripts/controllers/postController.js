@@ -10,9 +10,7 @@ class PostController {
             .then(function (successData) {
                 _self.view.showPosts(successData);
             })
-            .catch(function (errorData) {
-                //TODO: fill notification
-            });
+            .catch(ajaxError);
     }
 
     viewPost(id) {
@@ -21,9 +19,7 @@ class PostController {
             .then(function (successData) {
                 _self.view.showPost(successData);
             })
-            .catch(function (errorData) {
-                //TODO: fill notification
-            });
+            .catch(ajaxError);
     }
 
     createPost() {
@@ -48,14 +44,10 @@ class PostController {
                                 .then(function (successData) {
                                     _self.view.showPosts(successData);
                                 })
-                                .catch(function (errorData) {
-                                    //TODO
-                                });
+                                .catch(ajaxError);
                             location.hash = "#/posts"
                         })
-                        .catch(function (errorData){
-                            //TODO
-                        });
+                        .catch(ajaxError);
                 });
             })
 
@@ -90,16 +82,12 @@ class PostController {
                                 .then(function (data) {
                                     location.hash = '#/posts';
                                  })
-                                .catch(function (errorData) {
-                                    alert('WOHO');
-                                })
+                                .catch(ajaxError)
                         })
                     });
                 });
             })
-                .catch(function (errorData) {
-                alert();
-            });
+                .catch(ajaxError);
     }
 
     deletePost(id) {
@@ -108,8 +96,6 @@ class PostController {
             .then(function (data) {
                 location.reload();
             })
-            .catch(function (errorData) {
-
-            })
+            .catch(ajaxError)
     }
 }

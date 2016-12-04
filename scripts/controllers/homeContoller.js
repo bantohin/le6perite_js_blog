@@ -15,8 +15,6 @@ class HomeController {
                     topPosts.push(successData[i]);
                 _self.view.listTopPosts(topPosts);
             })
-            .catch(function (errorData) {
-                //TODO...
-            })
+            .catch(ajaxError)
     }
 }

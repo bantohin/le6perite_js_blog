@@ -1,6 +1,15 @@
 (function app() {
     showHideHeaderButtons();
 
+    $(document).on({
+        ajaxStart: function() {
+            $("#loadingBox").show();
+        },
+        ajaxStop: function() {
+            $("#loadingBox").hide();
+        }
+    });
+
     let router = Sammy(function () {
         let baseUrl = "https://baas.kinvey.com/";
         let appId = "kid_rygdnrymg";

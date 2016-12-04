@@ -10,15 +10,11 @@ class DetailsController{
 
         this.model.getPost(postId)
             .then(displayPostDetails)
-            .catch(errorDisplayPostDetails);
+            .catch(ajaxError);
 
 
         function displayPostDetails(post) {
             _self.view.showDetails(post);
-        }
-
-        function errorDisplayPostDetails(error) {
-            alert();
         }
     }
 

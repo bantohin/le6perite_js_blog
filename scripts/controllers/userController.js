@@ -14,7 +14,6 @@ class UserController {
                     let username = $('#app').find('#login input[name=username]').val();
                     let password = $('#app').find('#login input[name=password]').val();
                     let userObj = {username: username, password: password};
-
                     _self.model.loginUser(userObj)
                         .then(function (successData) {
                             sessionStorage.setItem('authToken',successData._kmd.authtoken);
@@ -23,9 +22,7 @@ class UserController {
                             showHideHeaderButtons();
                             location.hash = '#/home';
                         })
-                        .catch(function (errorData) {
-                            //TODO: fill notification
-                        });
+                        .catch(ajaxError);
                 })
             })
 
@@ -40,9 +37,7 @@ class UserController {
                 showHideHeaderButtons();
                 _self.view.logoutUser()
             })
-            .catch(function (errorData) {
-                //TODO: fill notification
-            });
+            .catch(ajaxError);
         }
 
 
@@ -66,9 +61,7 @@ class UserController {
                             location.hash = '#/home';
                             showHideHeaderButtons();
                         })
-                        .catch( function () {
-                            //TODO: fill notification
-                        });
+                        .catch(ajaxError);
                 });
             })
 
