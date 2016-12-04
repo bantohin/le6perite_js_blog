@@ -11,8 +11,26 @@ class PostView {
         let renderedHtml = "";
         $.get('templates/post-templates/posts-template.html',function (template) {
             for(let i = 0; i < data.length; i++){
-                renderedHtml += Mustache.render(template,data[i]);
+                let postHtml = Mustache.render(template,data[i]);
+                let editButton = $(postHtml).children()[4];
+                let deleteButton = $(postHtml).children()[5];
+                let currentUserId = sessionStorage.getItem('id');
+                let creatorId = data[i]._acl.creator;
+                if(currentUserId != creatorId){
+                }
+                renderedHtml += postHtml;
+
                 $('#app').html(renderedHtml);
+            }
+            for(let i = 0; i<document.getElementById('app').childNodes.length; i++){
+                let element = document.getElementById('app').childNodes[i];
+                let currentUserId = sessionStorage.getItem('id');
+                if(data[i]._acl.creator != currentUserId){
+                    let editButton = element.getElementsByClassName("edit-button")[0];
+                    let deleteButton = element.getElementsByClassName('delete-button')[0];
+                    element.removeChild(editButton);
+                    element.removeChild(deleteButton)
+                }
             }
         });
 
