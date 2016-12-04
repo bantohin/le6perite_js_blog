@@ -82,19 +82,26 @@ class PostController {
                         let buttonEdit = $('#app').find('#edit-btn');
                         buttonEdit.click(function () {
                             let newTitle = $('#app').find('#edit-title').val();
+                            let newAuthor = $('#app').find('#edit-author').attr('data-author');
                             let newText = $('#app').find('#edit-text').val();
                             let newImage = $('#app').find('#edit-image').val();
+                            let newViews = $('#app').find('#edit-views').attr('data-views');
+                            let newDate = new Date(Date.now());
+                            newDate = ((newDate.getMonth() + 1) + '/' + newDate.getDate() + '/' +  newDate.getFullYear());
                             let dataObject = {
+                                author: newAuthor,
                                 title: newTitle,
                                 text: newText,
-                                image: newImage
+                                date: newDate,
+                                image: newImage,
+                                views: newViews
                             };
                             _self.model.editPost(id,dataObject)
                                 .then(function (data) {
                                     location.hash = '#/posts';
                                  })
                                 .catch(function (errorData) {
-
+                                    alert('WOHO');
                                 })
                         })
                     });
@@ -109,7 +116,7 @@ class PostController {
         let _self = this;
         this.model.deletePost(id)
             .then(function (data) {
-                location.hash = '#/posts';
+                location.reload();
             })
             .catch(function (errorData) {
 
