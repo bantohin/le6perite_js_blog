@@ -22,9 +22,12 @@ class PostView {
                     let _self = this;
                     $( ".edit-button" ).click( function (ev) {
                         _self.trigger( 'editButtonClicked', $(this).attr('data-id'));
-                    })
+                    });
                     $( ".delete-button" ).click( function (ev) {
                         _self.trigger('deleteCurrentPost', $(this).attr('data-id'));
+                    });
+                    $('.readMore-button').click(function (ev) {
+                        _self.trigger('readMore', $(this).attr('data-id'));
                     })
                 } )
             })
@@ -50,9 +53,5 @@ class PostView {
             let renderedHtml = Mustache.render(template,data);
             $("#app").html(renderedHtml);
         })
-    }
-
-    deletePost() {
-        //TODO...
     }
 }

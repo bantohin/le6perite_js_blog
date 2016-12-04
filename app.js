@@ -60,6 +60,10 @@
 
         this.bind('deleteCurrentPost',function (event,data) {
             postController.deletePost(data);
+        });
+
+        this.bind('readMore', function (event, data) {
+            alert('Zdr ui');
         })
 
     });
