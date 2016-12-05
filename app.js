@@ -64,7 +64,6 @@
 
         this.get('#/posts/details/:id',function () {
             postController.viewPost(this.params['id']);
-            // detailsController.showDetails(this.params['id']);
         });
 
 

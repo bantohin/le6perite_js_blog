@@ -11,7 +11,7 @@ class HomeController {
             .then(function (successData) {
                 let topPosts = [];
                 successData.sort((a,b) => b.views - a.views);
-                for(let i = 0; i < 3; i ++)
+                for(let i = 0; i < Math.min(successData.length,3); i ++)
                     topPosts.push(successData[i]);
                 _self.view.listTopPosts(topPosts);
             })
