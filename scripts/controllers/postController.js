@@ -1,7 +1,8 @@
 class PostController {
-    constructor(view, model) {
+    constructor(view, model, tagsController) {
         this.model = model;
         this.view = view;
+        this.tagsController = tagsController;
     }
 
     listPosts() {
@@ -46,6 +47,7 @@ class PostController {
         $.get('templates/post-templates/postCreate-template.html', function (template) {
             $(document).ready(function () {
                 $('#createPost-btn').click(function () {
+                    _self.tagsController.getTags();
                     let newDate = new Date(Date.now());
                     newDate = ((newDate.getMonth() + 1) + '/' + newDate.getDate() + '/' +  newDate.getFullYear());
                     let postData = {

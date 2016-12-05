@@ -60,7 +60,10 @@ class PostView {
             for(let each of comments){
 
                 let p = $('<p>');
-                p.text(each.text);
+                let i = $('<i>');
+                i.text(each.author);
+                p.text(each.text + " by ");
+                p.append(i);
                 let deleteBtn = $('<input type="button" value="Delete comment"/>');
                 deleteBtn.attr('my-id',each._id);
                 deleteBtn.click(deleteComment);
@@ -70,7 +73,7 @@ class PostView {
                 }
             }
 
-
+            //TODO: deleteComment() -> Model
             function deleteComment() {
                 let deleteId = $(this).attr('my-id');
                 let url = "https://baas.kinvey.com/" + 'appdata/kid_rygdnrymg/comments/' + deleteId;
@@ -84,6 +87,8 @@ class PostView {
                 })
 
             }
+
+
             _self.commentsList = commentsList
         })
     }
@@ -104,7 +109,7 @@ class PostView {
                             text: commentText,
                             post_id: post._id,
                             author: sessionStorage.getItem('username')
-                        }
+                        };
                         _self.trigger( 'addCommentClicked', obj);
                     });
                 } )

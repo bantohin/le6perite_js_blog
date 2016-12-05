@@ -18,9 +18,12 @@
         let authService = new AuthService(appId, appSecret);
         let requester = new Requester();
 
+        let tagsModel = new  TagsModel(baseUrl,appId,requester,authService);
+        let tagsController = new TagsController(tagsModel);
+
         let postView = new PostView(authService);
         let postModel = new PostModel(baseUrl,appId, requester, authService);
-        let postController = new PostController(postView, postModel);
+        let postController = new PostController(postView, postModel, tagsController);
 
         let userView = new UserView();
         let userModel = new UserModel(baseUrl,appId,requester,authService);
@@ -58,7 +61,7 @@
             userController.logoutUser();
         });
 
-        this.get('#/posts/:id',function () {
+        this.get('#/posts/edit/:id',function () {
             //TODO: change the url in ""
             postController.loadPost(this.params['id']);
         });
@@ -70,7 +73,7 @@
 
 
         this.bind('editButtonClicked',function (event,data) {
-            location.hash = '#/posts/' + data;
+            location.hash = '#/posts/edit/' + data;
         });
 
         this.bind('deleteCurrentPost',function (event,data) {
