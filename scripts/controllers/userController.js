@@ -20,6 +20,7 @@ class UserController {
                             sessionStorage.setItem('username',successData.username);
                             sessionStorage.setItem('id',successData._id);
                             showHideHeaderButtons();
+                            showInfo("Successfully logged in");
                             location.hash = '#/home';
                         })
                         .catch(ajaxError);
@@ -36,6 +37,7 @@ class UserController {
                 sessionStorage.clear();
                 showHideHeaderButtons();
                 _self.view.logoutUser()
+                showInfo("Successfully logged out");
             })
             .catch(ajaxError);
         }
@@ -60,6 +62,7 @@ class UserController {
                             sessionStorage.setItem('id', successData._id);
                             location.hash = '#/home';
                             showHideHeaderButtons();
+                            showInfo("Successfully registered");
                         })
                         .catch(ajaxError);
                 });

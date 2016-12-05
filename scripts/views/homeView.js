@@ -13,7 +13,6 @@ class HomeView {
                 renderedHtml += Mustache.render(template,entity);
                 $('#app').html(renderedHtml);
             });
-            console.log(document.getElementById('app'));
         })
     }
 }

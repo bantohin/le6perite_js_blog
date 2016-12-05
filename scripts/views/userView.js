@@ -12,8 +12,7 @@ class UserView {
     }
 
     logoutUser() {
-            location.hash = '#/home';
-        //TODO: fill notification
+        location.hash = '#/home';
     }
 
     registerUser() {
@@ -22,6 +21,5 @@ class UserView {
             let renderedHtml = Mustache.render(template);
             $('#app').html(renderedHtml);
         });
-        //TODO: fill notification
     }
 }

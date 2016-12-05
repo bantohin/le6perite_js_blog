@@ -45,6 +45,7 @@ class PostController {
                                     _self.view.showPosts(successData);
                                 })
                                 .catch(ajaxError);
+                            showInfo("Post created.");
                             location.hash = "#/posts"
                         })
                         .catch(ajaxError);
@@ -80,6 +81,7 @@ class PostController {
                             };
                             _self.model.editPost(id,dataObject)
                                 .then(function (data) {
+                                    showInfo("Post edited.");
                                     location.hash = '#/posts';
                                  })
                                 .catch(ajaxError)
@@ -92,9 +94,11 @@ class PostController {
 
     deletePost(id) {
         let _self = this;
+        let post = document.querySelectorAll(`[data-id="${id}"]`)[0].parentNode;
         this.model.deletePost(id)
             .then(function (data) {
-                location.reload();
+                showInfo("Post deleted.");
+                $(post).fadeOut()
             })
             .catch(ajaxError)
     }
