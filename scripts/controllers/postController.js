@@ -15,9 +15,27 @@ class PostController {
 
     viewPost(id) {
         let _self = this;
-        _self.model.getPost()
+        _self.model.getPost(id)
             .then(function (successData) {
-                _self.view.showPost(successData);
+                _self.increaseViews(successData)
+            })
+            .catch(ajaxError);
+    }
+    increaseViews(post){
+        let _self = this;
+        let incViews = Number(post.views) + 1;
+
+        let dataObject = {
+            author: post.author,
+            date: post.date,
+            image: post.image,
+            text: post.text,
+            title: post.title,
+            views: incViews
+        };
+        _self.model.increaseViews(post._id, dataObject)
+            .then(function (successData) {
+                _self.view.showPost(post)
             })
             .catch(ajaxError);
     }

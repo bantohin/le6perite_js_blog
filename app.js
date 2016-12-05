@@ -18,7 +18,7 @@
         let authService = new AuthService(appId, appSecret);
         let requester = new Requester();
 
-        let postView = new PostView();
+        let postView = new PostView(authService);
         let postModel = new PostModel(baseUrl,appId, requester, authService);
         let postController = new PostController(postView, postModel);
 
@@ -63,10 +63,8 @@
         });
 
         this.get('#/posts/details/:id',function () {
-           //alert(this.params['id']);
-           //TODO:...
-           //detailsController.showDetails(this.params['id']);
-            detailsController.showDetails(this.params['id']);
+            postController.viewPost(this.params['id']);
+            // detailsController.showDetails(this.params['id']);
         });
 
 
