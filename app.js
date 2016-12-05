@@ -30,9 +30,9 @@
         let homeModel = new HomeModel(baseUrl,appId,requester,authService);
         let homeController = new HomeController(homeModel,homeView);
 
-        let detailsView = new DetailsView(authService);
-        let detailsModel = new DetailsModel(baseUrl,appId,requester,authService);
-        let detailsController = new DetailsController(detailsView,detailsModel);
+        let commentModel = new CommentModel(baseUrl,appId,requester,authService);
+        let commentController = new CommentController(commentModel, postView);
+
 
         this.get('#/home' , function () {
             homeController.listTopPosts();
@@ -77,6 +77,10 @@
 
         this.bind('readMore', function (event, data) {
             location.hash = '#/posts/details/' + data;
+        });
+
+        this.bind('addCommentClicked', function (event,data) {
+            commentController.addComment(data);
         })
 
     });

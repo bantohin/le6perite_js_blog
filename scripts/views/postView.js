@@ -68,14 +68,15 @@ class PostView {
                 return data.post_id == post._id
             });
 
-            _self.sortedComments = sorted;
+            // _self.sortedComments = sorted;
 
             $('#app').empty();
             $(document).ready(function () {
                 $.get('templates/post-templates/detailedPost-template.html',function (template) {
                     let renderedHtml = Mustache.render(template, post);
                     let commentsList = $('<div>');
-                    for(let each of _self.sortedComments){
+
+                    for(let each of sorted){
                         let p = $('<p>');
                         p.text(each.text);
                         let deleteBtn = $('<input type="button" value="Delete comment"/>');
@@ -87,13 +88,24 @@ class PostView {
                         }
                     }
                     $('#app').html(renderedHtml);
+                    Sammy( function () {
+                        let _self = this;
+                        $( "#add-comment" ).click( function (ev) {
+                            let commentText = $(".commentText").val();
+                            let obj = {
+                                text: commentText,
+                                post_id: post._id,
+                                author: sessionStorage.getItem('username')
+                            }
+                            _self.trigger( 'addCommentClicked', obj);
+                        });
+                    } )
                     commentsList.appendTo($('#app').find('#comments-list'));
 
                     function deleteComment() {
                         let deleteId = $(this).attr('my-id');
                         let url = "https://baas.kinvey.com/" + 'appdata/kid_rygdnrymg/comments/' + deleteId;
                         let headers = _self.authService.getHeaders();
-
                         $.ajax({
                             method: 'DELETE',
                             url: url,
