@@ -59,11 +59,13 @@
         });
 
         this.get('#/posts/:id',function () {
+            //TODO: change the url in ""
             postController.loadPost(this.params['id']);
         });
 
         this.get('#/posts/details/:id',function () {
             postController.viewPost(this.params['id']);
+            commentController.loadComments(this.params['id'])
         });
 
 

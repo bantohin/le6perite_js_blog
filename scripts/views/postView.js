@@ -2,7 +2,7 @@ class PostView {
     constructor(authService) {
         this.authService = authService;
         this.views = 0;
-        this.sortedComments = [];
+        this.commentsList = ''
     }
 
     showPosts(data) {
@@ -52,77 +52,66 @@ class PostView {
     showPost(data) {
         this.loadCurrentPostComments(data);
     }
+
+    listComments(comments){
+        let _self = this;
+        $(document).ready(function () {
+            let commentsList = $('<div>');
+            for(let each of comments){
+
+                let p = $('<p>');
+                p.text(each.text);
+                let deleteBtn = $('<input type="button" value="Delete comment"/>');
+                deleteBtn.attr('my-id',each._id);
+                deleteBtn.click(deleteComment);
+                p.appendTo(commentsList);
+                if(sessionStorage.getItem('id') == each._acl.creator){
+                    deleteBtn.appendTo(commentsList);
+                }
+            }
+
+
+            function deleteComment() {
+                let deleteId = $(this).attr('my-id');
+                let url = "https://baas.kinvey.com/" + 'appdata/kid_rygdnrymg/comments/' + deleteId;
+                let headers = _self.authService.getHeaders();
+                $.ajax({
+                    method: 'DELETE',
+                    url: url,
+                    headers: headers
+                }).then(function () {
+                    location.reload();
+                })
+
+            }
+            _self.commentsList = commentsList
+        })
+    }
+
     loadCurrentPostComments(post){
         let _self = this;
-        let requestUrl =  "https://baas.kinvey.com/" + 'appdata/kid_rygdnrymg/comments';
-        let requestHeaders = {
-            'Authorization': 'Basic ' + btoa('kid_rygdnrymg:c24558e33f43465fb450b9ad223f3050')
-        };
-
-        $.ajax({
-            method:"GET",
-            url: requestUrl,
-            headers: requestHeaders
-        }).then(function (comments) {
-            let sorted = comments.filter(function (data) {
-                return data.post_id == post._id
-            });
-
-            // _self.sortedComments = sorted;
-
-            $('#app').empty();
-            $(document).ready(function () {
-                $.get('templates/post-templates/detailedPost-template.html',function (template) {
-                    let renderedHtml = Mustache.render(template, post);
-                    let commentsList = $('<div>');
-
-                    for(let each of sorted){
-                        let p = $('<p>');
-                        p.text(each.text);
-                        let deleteBtn = $('<input type="button" value="Delete comment"/>');
-                        deleteBtn.attr('my-id',each._id);
-                        deleteBtn.click(deleteComment);
-                        p.appendTo(commentsList);
-                        if(sessionStorage.getItem('id') == each._acl.creator){
-                            deleteBtn.appendTo(commentsList);
+        $('#app').empty();
+        $(document).ready(function () {
+            $.get('templates/post-templates/detailedPost-template.html',function (template) {
+                let renderedHtml = Mustache.render(template, post);
+                $('#app').html(renderedHtml);
+                _self.commentsList.appendTo($('#app').find('#comments-list'));
+                Sammy( function () {
+                    let _self = this;
+                    $( "#add-comment" ).click( function (ev) {
+                        let commentText = $(".commentText").val();
+                        let obj = {
+                            text: commentText,
+                            post_id: post._id,
+                            author: sessionStorage.getItem('username')
                         }
-                    }
-                    $('#app').html(renderedHtml);
-                    Sammy( function () {
-                        let _self = this;
-                        $( "#add-comment" ).click( function (ev) {
-                            let commentText = $(".commentText").val();
-                            let obj = {
-                                text: commentText,
-                                post_id: post._id,
-                                author: sessionStorage.getItem('username')
-                            }
-                            _self.trigger( 'addCommentClicked', obj);
-                        });
-                    } )
-                    commentsList.appendTo($('#app').find('#comments-list'));
+                        _self.trigger( 'addCommentClicked', obj);
+                    });
+                } )
 
-                    function deleteComment() {
-                        let deleteId = $(this).attr('my-id');
-                        let url = "https://baas.kinvey.com/" + 'appdata/kid_rygdnrymg/comments/' + deleteId;
-                        let headers = _self.authService.getHeaders();
-                        $.ajax({
-                            method: 'DELETE',
-                            url: url,
-                            headers: headers
-                        }).then(function () {
-                            location.reload();
-                        })
-
-                    }
-                })
             })
-        }).catch(function (error) {
-            _self.sortedComments = [];
-    })
-
-
-}
+        })
+    }
 
     createPost() {
         $('#app').empty();
