@@ -1,8 +1,9 @@
-<div id="posts">
+<div data-id="{{_id}}" id="posts" style="text-align: center">
     <h2>{{title}}</h2>
     <p>Posted on: <i>{{date}}</i> by {{author}}; Read {{views}} times</p>
     <br>
-    <div>Tags: <b>{{tags}}</b></div>
+    <h4>Tags:</h4>
+    <div id="tags"></div>
     <div id="text">
         <p style="display: inline-block">{{text}}</p>
     </div>
