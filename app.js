@@ -17,6 +17,7 @@
 
         let authService = new AuthService(appId, appSecret);
         let requester = new Requester();
+        //searchEngine(requester,authService);
 
         let tagsModel = new  TagsModel(baseUrl,appId,requester,authService);
         let tagsController = new TagsController(tagsModel);
