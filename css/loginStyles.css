@@ -1,0 +1,27 @@
+#login{
+    text-align: center;
+}
+
+#loginH{
+    font-family: "Comic Sans MS";
+    color:deepskyblue;
+    background: white;
+    display: inline-flex;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#loginForm{
+    background: white;
+    border-radius: 50px;
+}
+
+#login-btn{
+    border-radius: 7px;
+    color:deepskyblue;
+    text-align: center;
+    background-color: white;
+    padding: 5px;
+    margin: 10px;
+    font-size: 1.0em;
+}

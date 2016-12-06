@@ -1,0 +1,55 @@
+#register{
+    text-align: center;
+}
+
+#registerH{
+    font-family: "Comic Sans MS";
+    color:deepskyblue;
+    background: white;
+    display: inline-flex;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#usernameP{
+    margin-top: 20px;
+    display: inline;
+    font-size: 1.5em;
+    color:deepskyblue;
+    border-radius: 20px;
+}
+
+#registerForm{
+    background: white;
+    border-radius: 50px;
+}
+
+#passwordP{
+    display: inline;
+    font-size: 1.5em;
+    color:deepskyblue;
+    border-radius: 20px;
+}
+
+#usernameInput{
+    margin-top: 20px;
+    border-radius: 15px;
+    display: inline;
+    margin: 10px;
+}
+
+#passwordInput{
+    border-radius: 15px;
+    display: inline;
+    margin: 10px;
+}
+
+#register-btn{
+    border-radius: 7px;
+    color:deepskyblue;
+    text-align: center;
+    background-color: white;
+    padding: 5px;
+    margin: 10px;
+    font-size: 1.0em;
+}

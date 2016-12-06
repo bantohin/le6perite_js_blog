@@ -1,0 +1,129 @@
+.footer{
+    text-align: center;
+}
+
+.header{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+#app{
+    text-align: center;
+}
+
+#infoBox, #errorBox, #loadingBox {
+    display:none;
+    width: 80%;
+    margin: 10px auto;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+#loadingBox {
+    background: #7CB3E9;
+}
+
+#infoBox {
+    background: #393;
+}
+
+#errorBox {
+    background: #F50;
+}
+
+header {
+    border-radius: 10px;
+    background: #00d5ff;
+}
+
+header a{
+    font-family: "Comic Sans MS";
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+header div{
+    border-radius: 2px;
+    display: inline-block;
+}
+
+header div a:hover{
+    color: #1687ff;
+}
+
+body{
+    background: #5bdbff;
+}
+#welcome-blog{
+    display: inline;
+    color: deepskyblue;
+    background: white;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px;
+}
+
+#top-three-posts{
+    border-radius: 50px;
+    background: white;
+}
+
+#top-three-posts a{
+    font-family: "Comic Sans MS";
+    color:deepskyblue;
+}
+
+#top-three-posts a:hover{
+    color: #0047ff;
+}
+
+#postedBy{
+    color:deepskyblue;
+}
+
+#homeText{
+    display: inline-block;
+    font-family: "Comic Sans MS";
+}
+
+#week-posts{
+    display: inline;
+    border-radius: 20px;
+    padding: 10px;
+    background: white;
+    color:deepskyblue;
+}
+
+#tagP{
+    font-family: "Comic Sans MS";
+}
+
+#homeDiv{
+    text-align: center;
+}
+
+
+header span{
+    font-family: "Comic Sans MS";
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#hideRadio{
+    background-color: darkred;
+    border-radius: 5px;
+    color: white;
+}
+
+#showRadio{
+    background-color: darkred;
+    border-radius: 5px;
+    color: white;
+}

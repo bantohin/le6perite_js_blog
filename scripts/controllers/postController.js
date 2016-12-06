@@ -32,7 +32,8 @@ class PostController {
             image: post.image,
             text: post.text,
             title: post.title,
-            views: incViews
+            views: incViews,
+            tags: post.tags
         };
         _self.model.increaseViews(post._id, dataObject)
             .then(function (successData) {

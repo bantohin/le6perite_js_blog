@@ -1,14 +1,11 @@
-<div id="register" style="text-align: center">
-    <h2>Register</h2>
-    <label>
-        Username:<br>
-        <input type="text" required name="username">
-    </label>
+<div id="register">
+    <h2 id="registerH">Register</h2>
     <br>
-    <label>
-        Password:<br>
-        <input type="password" required name="password">
-    </label>
-    <br>
-    <input type="button" value="Register" id="register-btn">
+    <form id="registerForm">
+        <p id="usernameP">Username:</p>
+        <input id="usernameInput" type="text" required name="username"><br>
+        <p id="passwordP">Password:</p>
+        <input id="passwordInput" type="password" required name="password"><br>
+        <input type="button" value="Register" id="register-btn">
+    </form>
 </div>

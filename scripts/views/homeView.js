@@ -5,9 +5,11 @@ class HomeView {
     listTopPosts(data) {
         $('#app').empty();
         let renderedHtml = `<br>
-            <h1>Welcome to our blog</h1>
-                            <br>               
-                <h2>Top three posts of the week</h2>`;
+            <h1 id="welcome-blog">Welcome to our blog</h1>
+                            <br>  
+                            <br>
+                            <br>
+                <h2 id="week-posts">Top three posts of the week:</h2>`;
         $.get('templates/homeTemplate.html', function (template) {
             data.forEach(function(entity) {
                 renderedHtml += Mustache.render(template,entity);
