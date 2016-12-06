@@ -1,15 +1,14 @@
 class PostController {
-    constructor(view, model, tagsController) {
+    constructor(view, model) {
         this.model = model;
         this.view = view;
-        this.tagsController = tagsController;
     }
 
-    loadTagsAndPosts(){
+    loadPosts(){
         let _self = this;
-        Promise.all([_self.model.getTags(), _self.model.getPosts()])
-            .then(function ([tags, posts]) {
-                _self.view.showPosts(tags, posts)
+        _self.model.getPosts()
+            .then(function (posts) {
+                _self.view.showPosts(posts)
             })
             .catch(ajaxError)
     }
@@ -33,7 +32,6 @@ class PostController {
             text: post.text,
             title: post.title,
             views: incViews,
-            tags: post.tags
         };
         _self.model.increaseViews(post._id, dataObject)
             .then(function (successData) {
@@ -48,7 +46,6 @@ class PostController {
         $.get('templates/post-templates/postCreate-template.html', function (template) {
             $(document).ready(function () {
                 $('#createPost-btn').click(function () {
-                    _self.tagsController.getTags();
                     let newDate = new Date(Date.now());
                     newDate = ((newDate.getMonth() + 1) + '/' + newDate.getDate() + '/' +  newDate.getFullYear());
                     let postData = {
@@ -115,11 +112,11 @@ class PostController {
 
     deletePost(id) {
         let _self = this;
-        let post = document.querySelectorAll(`[data-id="${id}"]`)[0].parentNode;
+        let post = document.querySelectorAll(`[data-id="${id}"]`)[0];
         this.model.deletePost(id)
             .then(function (data) {
                 showInfo("Post deleted.");
-                $(post).fadeOut()
+                $(post).fadeOut();
             })
             .catch(ajaxError)
     }

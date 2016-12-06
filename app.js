@@ -19,12 +19,9 @@
         let requester = new Requester();
         //searchEngine(requester,authService);
 
-        let tagsModel = new  TagsModel(baseUrl,appId,requester,authService);
-        let tagsController = new TagsController(tagsModel);
-
         let postView = new PostView(authService);
         let postModel = new PostModel(baseUrl,appId, requester, authService);
-        let postController = new PostController(postView, postModel, tagsController);
+        let postController = new PostController(postView, postModel);
 
         let userView = new UserView();
         let userModel = new UserModel(baseUrl,appId,requester,authService);
@@ -47,7 +44,7 @@
         });
 
         this.get('#/posts', function () {
-            postController.loadTagsAndPosts()
+            postController.loadPosts()
         });
 
         this.get('#/createPost',function () {

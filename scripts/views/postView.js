@@ -1,45 +1,31 @@
 class PostView {
-    constructor() {
-        this.tags = []
-        this.rendered = false;
-        this.tagsLoaded = false;
+    constructor(authService) {
+        this.authService = authService;
     }
 
-    showPosts(tags, data) {
-        data.sort(function (a,b) {
+    showPosts(posts) {
+        posts.sort(function (a,b) {
             return new Date(b.date) - new Date(a.date) || Number(b.views) - Number(a.views);
         });
         let _self = this;
         $('#app').empty();
         let renderedHtml = "";
         $.get('templates/post-templates/posts-template.html',function (template) {
-            for(let i = 0; i < data.length; i++){
-                let postHtml = Mustache.render(template,data[i]);
+            for(let i = 0; i < posts.length; i++){
+                let postHtml = Mustache.render(template,posts[i]);
                 renderedHtml += postHtml;
                 $('#app').html(renderedHtml);
-                _self.rendered = true
             }
             for(let i = 0; i<document.getElementById('app').childNodes.length; i++){
                 let element = document.getElementById('app').childNodes[i];
                 let currentUserId = sessionStorage.getItem('id');
-                if(data[i]._acl.creator != currentUserId){
+                if(posts[i]._acl.creator != currentUserId){
                     let editButton = element.getElementsByClassName("edit-button")[0];
                     let deleteButton = element.getElementsByClassName('delete-button')[0];
                     element.removeChild(editButton);
                     element.removeChild(deleteButton)
                 }
             }
-            for (let post of document.getElementById('app').childNodes) {
-                let id = $(post).attr('data-id');
-                let tagsDiv = $(post).find("#tags");
-                for (let tag of tags) {
-                    if (tag.posts_id == id) {
-                        let a = $(`<a href="#" tag-id="${tag._id}">${tag.text} </a>`).appendTo($(tagsDiv))
-                        //TODO: bind button on click to show posts containing this tag
-                    }
-                }
-            }
-
         });
 
         $.get('templates/post-templates/posts-template.html',function (template) {
@@ -61,10 +47,6 @@ class PostView {
         })
     }
 
-    loadedTags(tags){
-        this.tagsLoaded = true;
-        this.tags = tags;
-    }
     showPost(data) {
         this.loadCurrentPostComments(data);
     }
@@ -91,6 +73,7 @@ class PostView {
 
             //TODO: deleteComment() -> Model
             function deleteComment() {
+                let _botonaEDis = this;
                 let deleteId = $(this).attr('my-id');
                 let url = "https://baas.kinvey.com/" + 'appdata/kid_rygdnrymg/comments/' + deleteId;
                 let headers = _self.authService.getHeaders();
@@ -99,12 +82,10 @@ class PostView {
                     url: url,
                     headers: headers
                 }).then(function () {
-                    location.reload();
+                    $(_botonaEDis.parentNode).fadeOut();
                 })
 
             }
-
-
             _self.commentsList = commentsList
         })
     }
