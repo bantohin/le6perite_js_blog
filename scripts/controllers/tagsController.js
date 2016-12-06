@@ -9,12 +9,11 @@ class TagsController {
             $( document ).ready( function () {
                         let postTags = $( '#createPost input[name=tags]' ).val();
                         postTags = postTags.split(',');
-                        let requests = [];
                         let iWasHere = false;
                         _self.model.getTags()
                             .then(function (tags) {
                                 for(let each of postTags){
-                                for(let tag of tags){                                     
+                                    for(let tag of tags){
                                         if(each == tag.text){
                                             iWasHere = true;
                                             let newId = _self.model.getPosts().then(function (posts) {
@@ -30,19 +29,19 @@ class TagsController {
                                             })
                                         }
                                     }
-                                    if(!iWasHere){
-                                            let text = each;
-                                            let newId = _self.model.getPosts().then(function (posts) {
-                                                let currentPost = posts[posts.length-1];
-                                                let currentPostId = currentPost._id;
-                                                let data = {
-                                                    text: text,
-                                                    posts_id: [currentPostId]
-                                                };
-                                                _self.model.postTag(data);
-                                            });
+                                        if(!iWasHere){
+                                                let text = each;
+                                                let newId = _self.model.getPosts().then(function (posts) {
+                                                    let currentPost = posts[posts.length-1];
+                                                    let currentPostId = currentPost._id;
+                                                    let data = {
+                                                        text: text,
+                                                        posts_id: [currentPostId]
+                                                    };
+                                                    _self.model.postTag(data);
+                                                });
+                                            }
                                         }
-                                    }
                             });
             })
         })
