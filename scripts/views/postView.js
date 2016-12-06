@@ -17,17 +17,6 @@ class PostView {
                 let postHtml = Mustache.render(template,data[i]);
                 renderedHtml += postHtml;
                 $('#app').html(renderedHtml);
-
-                for(let i = 0; i<document.getElementById('app').childNodes.length; i++) {
-                    let element = document.getElementById('app').childNodes[i];
-                    let tagsDiv = $(element).find('.tags');
-                    let postTags = data[i].tags;
-                    for (let tag of postTags) {
-                        let tagPara = $('<b>').text(tag + ", ");
-                        $(tagPara).appendTo(tagsDiv);
-                    }
-                }
-
             }
             for(let i = 0; i<document.getElementById('app').childNodes.length; i++){
                 let element = document.getElementById('app').childNodes[i];

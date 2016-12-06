@@ -35,3 +35,25 @@ a{
 #errorBox {
     background: #F50;
 }
+
+header {
+    background: #5bdbff;
+}
+
+header a{
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+header div{
+    display: inline-block;
+}
+
+header div a:hover{
+    color: #219eff;
+}
+
+body{
+    background: #5bdbff;
+}
