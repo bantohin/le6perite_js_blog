@@ -37,13 +37,17 @@
         let commentModel = new CommentModel(baseUrl,appId,requester,authService);
         let commentController = new CommentController(commentModel, postView);
 
+        let searchView = new SearchView();
+        let searchModel = new SearchModel(baseUrl,appId,requester,authService);
+        let searchController = new SearchController(searchModel,searchView);
+
 
         this.get('#/home' , function () {
             homeController.listTopPosts();
         });
 
         this.get('#/posts', function () {
-            postController.listPosts();
+            postController.loadTagsAndPosts()
         });
 
         this.get('#/createPost',function () {
@@ -87,6 +91,10 @@
 
         this.bind('addCommentClicked', function (event,data) {
             commentController.addComment(data);
+        })
+
+        this.bind('searchButtonClicked', function (event,data) {
+            searchController.loadSearchData(data);
         })
 
     });
