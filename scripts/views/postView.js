@@ -1,11 +1,11 @@
 class PostView {
-    constructor(authService) {
-        this.authService = authService;
-        this.views = 0;
-        this.commentsList = ''
+    constructor() {
+        this.tags = []
+        this.rendered = false;
+        this.tagsLoaded = false;
     }
 
-    showPosts(data) {
+    showPosts(tags, data) {
         data.sort(function (a,b) {
             return new Date(b.date) - new Date(a.date) || Number(b.views) - Number(a.views);
         });
@@ -17,6 +17,7 @@ class PostView {
                 let postHtml = Mustache.render(template,data[i]);
                 renderedHtml += postHtml;
                 $('#app').html(renderedHtml);
+                _self.rendered = true
             }
             for(let i = 0; i<document.getElementById('app').childNodes.length; i++){
                 let element = document.getElementById('app').childNodes[i];
@@ -28,6 +29,17 @@ class PostView {
                     element.removeChild(deleteButton)
                 }
             }
+            for (let post of document.getElementById('app').childNodes) {
+                let id = $(post).attr('data-id');
+                let tagsDiv = $(post).find("#tags");
+                for (let tag of tags) {
+                    if (tag.posts_id == id) {
+                        let a = $(`<a href="#" tag-id="${tag._id}">${tag.text} </a>`).appendTo($(tagsDiv))
+                        //TODO: bind button on click to show posts containing this tag
+                    }
+                }
+            }
+
         });
 
         $.get('templates/post-templates/posts-template.html',function (template) {
@@ -47,6 +59,11 @@ class PostView {
             })
 
         })
+    }
+
+    loadedTags(tags){
+        this.tagsLoaded = true;
+        this.tags = tags;
     }
     showPost(data) {
         this.loadCurrentPostComments(data);

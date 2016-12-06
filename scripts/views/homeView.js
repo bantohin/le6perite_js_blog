@@ -13,6 +13,13 @@ class HomeView {
                 renderedHtml += Mustache.render(template,entity);
                 $('#app').html(renderedHtml);
             });
+            Sammy(function () {
+                let _self = this;
+                $( "#searchEngine" ).click( function (ev) {
+                    let text = $("#searchedText").val()
+                    _self.trigger( 'searchButtonClicked', text);
+                });
+            })
         })
     }
 }

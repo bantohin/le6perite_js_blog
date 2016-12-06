@@ -5,13 +5,13 @@ class PostController {
         this.tagsController = tagsController;
     }
 
-    listPosts() {
+    loadTagsAndPosts(){
         let _self = this;
-        _self.model.getPosts()
-            .then(function (successData) {
-                _self.view.showPosts(successData);
+        Promise.all([_self.model.getTags(), _self.model.getPosts()])
+            .then(function ([tags, posts]) {
+                _self.view.showPosts(tags, posts)
             })
-            .catch(ajaxError);
+            .catch(ajaxError)
     }
 
     viewPost(id) {
@@ -50,7 +50,6 @@ class PostController {
                     _self.tagsController.getTags();
                     let newDate = new Date(Date.now());
                     newDate = ((newDate.getMonth() + 1) + '/' + newDate.getDate() + '/' +  newDate.getFullYear());
-                    let tags = $('#tags').val().split(',');
                     let postData = {
                         title: $('#createPost input[name=title]').val(),
                         text: $('#createPost textarea[name=text]').val(),
@@ -58,7 +57,6 @@ class PostController {
                         author: sessionStorage.getItem('username'),
                         views: 0,
                         image: $('#createPost input[name=image]').val(),
-                        tags: tags
                     };
                     _self.model.postPost(postData)
                         .then(function () {
