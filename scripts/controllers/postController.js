@@ -50,13 +50,15 @@ class PostController {
                     _self.tagsController.getTags();
                     let newDate = new Date(Date.now());
                     newDate = ((newDate.getMonth() + 1) + '/' + newDate.getDate() + '/' +  newDate.getFullYear());
+                    let tags = $('#tags').val().split(',');
                     let postData = {
                         title: $('#createPost input[name=title]').val(),
                         text: $('#createPost textarea[name=text]').val(),
                         date: newDate,
                         author: sessionStorage.getItem('username'),
                         views: 0,
-                        image: $('#createPost input[name=image]').val()
+                        image: $('#createPost input[name=image]').val(),
+                        tags: tags
                     };
                     _self.model.postPost(postData)
                         .then(function () {

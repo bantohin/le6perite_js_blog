@@ -16,8 +16,18 @@ class PostView {
             for(let i = 0; i < data.length; i++){
                 let postHtml = Mustache.render(template,data[i]);
                 renderedHtml += postHtml;
-
                 $('#app').html(renderedHtml);
+
+                for(let i = 0; i<document.getElementById('app').childNodes.length; i++) {
+                    let element = document.getElementById('app').childNodes[i];
+                    let tagsDiv = $(element).find('.tags');
+                    let postTags = data[i].tags;
+                    for (let tag of postTags) {
+                        let tagPara = $('<b>').text(tag + ", ");
+                        $(tagPara).appendTo(tagsDiv);
+                    }
+                }
+
             }
             for(let i = 0; i<document.getElementById('app').childNodes.length; i++){
                 let element = document.getElementById('app').childNodes[i];
@@ -123,6 +133,7 @@ class PostView {
         $.get('templates/post-templates/postCreate-template.html', function (template) {
             let renderedHtml = Mustache.render(template);
             $('#app').html(renderedHtml);
+            //CKEDITOR.replace(document.getElementById('createPost-textarea'));
         });
     }
 
@@ -131,6 +142,7 @@ class PostView {
         $.get('templates/post-templates/editPost-template.html', function (template) {
             let renderedHtml = Mustache.render(template,data);
             $("#app").html(renderedHtml);
+            //CKEDITOR.replace(document.getElementById('editPost-textarea'));
         })
     }
 }
