@@ -69,7 +69,6 @@
         });
 
         this.get('#/posts/edit/:id',function () {
-            //TODO: change the url in ""
             postController.loadPost(this.params['id']);
         });
 
