@@ -28,12 +28,12 @@ class SearchController {
                                     console.log(posts);
                                     console.log(postWithTag);
                                     results.push(postWithTag);
+                                    _self.view.displayPostTitles(results);
                                 }
                             })
                             .catch(ajaxError);
                     }
                 }
-                _self.view.displayPostTitles(results);
             })
             .catch(ajaxError);
     }

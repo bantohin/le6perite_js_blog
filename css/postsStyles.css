@@ -17,6 +17,20 @@ h2{
     font-size: 36px;
 }
 
+#posts a{
+    color: #5bdbff;
+}
+
+#posts a:hover{
+    color: deepskyblue;
+    text-decoration: underline;
+}
+
+#posts a:visited{
+    color: black;
+    text-decoration: dashed;
+}
+
 #posts button{
     background-color: #FFFFFF;
     border: none;
