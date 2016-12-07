@@ -1,0 +1,58 @@
+#editPost{
+    margin-top: 15px;
+    display: inline-block;
+    min-width: 350px;
+    padding-top: 20px;
+    background: white;
+    border-radius: 50px;
+}
+
+#editPost{
+    font-family: "Comic Sans MS";
+    color:deepskyblue;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    padding-top: 12px;
+}
+
+#editPost input[type=button]{
+    text-align: center;
+    margin: 10px;
+    font-size: 1.0em;
+    background-color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    color: #5bdbff;
+    border-radius: 20px;
+    width: 120px;
+    font-weight: bold;
+    margin-bottom:5px;
+    outline:none;
+}
+
+#editPost input[type=button]:hover{
+    background-color: #5bdbff;
+    border: none;
+    padding: 10px;
+    color: #ffffff;
+    border-radius: 20px;
+    width: 120px;
+    margin-bottom:5px;
+}
+
+#editPost textarea{
+    width: 500px;
+    overflow: hidden;
+    border-radius: 30px;
+    height:100px;
+    padding: 10px;
+}
+
+#editPost input[type=text]{
+    display: block;
+    width: 500px;
+    background: white;
+    border-radius: 50px;
+
+}
