@@ -1,7 +1,8 @@
 class PostController {
-    constructor(view, model) {
+    constructor(view, model, tagsController) {
         this.model = model;
         this.view = view;
+        this.tagsController = tagsController;
     }
 
     loadPosts(){
@@ -57,6 +58,11 @@ class PostController {
                         image: $('#createPost input[name=image]').val(),
                     };
 
+
+                    let tags = $('#createPost input[name=tags]').val().split(',');
+                    _self.tagsController.postTags(tags);
+
+
                     if(postData.title == "" || postData.text == ""){
                         showError('You must include at least title and content in your post');
                     }else{
@@ -102,12 +108,18 @@ class PostController {
                                 image: newImage,
                                 views: newViews
                             };
-                            _self.model.editPost(id,dataObject)
-                                .then(function (data) {
-                                    showInfo("Post edited.");
-                                    location.hash = '#/posts';
-                                 })
-                                .catch(ajaxError)
+                            if(newTitle == "" || newText == ""){
+                                showError('You must include at least title and content fields')
+                            }
+                            else{
+                                _self.model.editPost(id,dataObject)
+                                    .then(function (data) {
+                                        showInfo("Post edited.");
+                                        location.hash = '#/posts';
+                                    })
+                                    .catch(ajaxError)
+                            }
+
                         })
                     });
                 });
