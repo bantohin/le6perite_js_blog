@@ -57,6 +57,7 @@
     font-size: 1.0em;
     border: none;
     width: 80px;
+    outline: none
 }
 
 #register-btn:hover{
