@@ -1,50 +1,80 @@
 class PostView {
     constructor(authService) {
         this.authService = authService;
+        this.tags = []
     }
 
     showPosts(posts) {
-        posts.sort(function (a,b) {
-            return new Date(b.date) - new Date(a.date) || Number(b.views) - Number(a.views);
-        });
         let _self = this;
-        $('#app').empty();
-        let renderedHtml = "";
-        $.get('templates/post-templates/posts-template.html',function (template) {
-            for(let i = 0; i < posts.length; i++){
-                let postHtml = Mustache.render(template,posts[i]);
-                renderedHtml += postHtml;
-                $('#app').html(renderedHtml);
-            }
-            for(let i = 0; i<document.getElementById('app').childNodes.length; i++){
-                let element = document.getElementById('app').childNodes[i];
-                let currentUserId = sessionStorage.getItem('id');
-                if(posts[i]._acl.creator != currentUserId){
-                    let editButton = element.getElementsByClassName("edit-button")[0];
-                    let deleteButton = element.getElementsByClassName('delete-button')[0];
-                    element.removeChild(editButton);
-                    element.removeChild(deleteButton)
+        (function getTags() {
+            let requestUrl = "https://baas.kinvey.com/" + "appdata/" + "kid_rygdnrymg" + "/tags";
+            let requestHeaders = {
+                'Authorization': 'Basic ' + btoa('kid_rygdnrymg:c24558e33f43465fb450b9ad223f3050')
+            };
+            $.ajax({
+                method: "GET",
+                url: requestUrl,
+                headers: requestHeaders
+            }).then(function (tags) {
+                _self.tags = tags;
+                everything();
+            })
+        })();
+        function everything() {
+            posts.sort(function (a,b) {
+                return new Date(b.date) - new Date(a.date) || Number(b.views) - Number(a.views);
+            });
+            $('#app').empty();
+            let renderedHtml = "";
+            $.get('templates/post-templates/posts-template.html',function (template) {
+                for(let i = 0; i < posts.length; i++){
+                    let postHtml = Mustache.render(template,posts[i]);
+                    renderedHtml += postHtml;
+                    $('#app').html(renderedHtml);
                 }
-            }
-        });
+                let divs = document.getElementsByClassName('tags-div');
+                for(let each of divs){
+                    for (let tag of _self.tags) {
+                        if(tag.posts_id.includes($(each).attr('this-id'))){
+                            let p = $('<p class="tags">');
+                            p.text(tag.text);
+                            console.log(tag.text);
+                            p.appendTo(each);
+                        }
+                    }
+                }
 
-        $.get('templates/post-templates/posts-template.html',function (template) {
-            $(document).ready(function () {
-                Sammy( function () {
-                    let _self = this;
-                    $( ".edit-button" ).click( function (ev) {
-                        _self.trigger( 'editButtonClicked', $(this).attr('data-id'));
-                    });
-                    $( ".delete-button" ).click( function (ev) {
-                        _self.trigger('deleteCurrentPost', $(this).attr('data-id'));
-                    });
-                    $('.readMore-button').click(function (ev) {
-                        _self.trigger('readMore', $(this).attr('data-id'));
-                    })
-                } )
+                for(let i = 0; i<document.getElementById('app').childNodes.length; i++){
+                    let element = document.getElementById('app').childNodes[i];
+                    let currentUserId = sessionStorage.getItem('id');
+                    if(posts[i]._acl.creator != currentUserId){
+                        let editButton = element.getElementsByClassName("edit-button")[0];
+                        let deleteButton = element.getElementsByClassName('delete-button')[0];
+                        element.removeChild(editButton);
+                        element.removeChild(deleteButton)
+                    }
+                }
+            });
+
+            $.get('templates/post-templates/posts-template.html',function (template) {
+                $(document).ready(function () {
+                    Sammy( function () {
+                        let _self = this;
+                        $( ".edit-button" ).click( function (ev) {
+                            _self.trigger( 'editButtonClicked', $(this).attr('data-id'));
+                        });
+                        $( ".delete-button" ).click( function (ev) {
+                            _self.trigger('deleteCurrentPost', $(this).attr('data-id'));
+                        });
+                        $('.readMore-button').click(function (ev) {
+                            _self.trigger('readMore', $(this).attr('data-id'));
+                        })
+                    } )
+                })
+
             })
 
-        })
+        }
     }
 
     showPost(data) {
