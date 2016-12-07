@@ -30,15 +30,20 @@ class HomeView {
                 <h2 id="week-posts">Top three posts of the week:</h2>`;
             $.get( 'templates/homeTemplate.html', function (template) {
                 for (let each of data) {
-                    for (let tag of _self.tags) {
-                        if (tag.posts_id.includes(each._id)) {
-                            
-                        }
-                    }
                     renderedHtml += Mustache.render( template, each );
                     $( '#app' ).html( renderedHtml );
                 }
-            } )
+                let divs = document.getElementsByClassName('tags-div');
+                for(let each of divs){
+                    for (let tag of _self.tags) {
+                        if(tag.posts_id.includes($(each).attr('this-id'))){
+                            let p = $('<p>');
+                            p.text(tag.text);
+                            p.appendTo(each);
+                        }
+                    }
+                }
+            } );
         }
             Sammy(function () {
                 let _self = this;
