@@ -10,7 +10,6 @@ class CommentController{
             _self.model.postComment(data)
                 .then(function (successData) {
                     location.reload();
-                    //TODO: fadeIn() na komentar
                 })
                 .catch(ajaxError);
         }

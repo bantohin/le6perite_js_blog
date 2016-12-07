@@ -8,7 +8,6 @@ class UserView {
            let renderedHtml  = Mustache.render(template);
            $('#app').html(renderedHtml);
         });
-        //TODO: fill notification
     }
 
     logoutUser() {

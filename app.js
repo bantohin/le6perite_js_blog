@@ -63,8 +63,12 @@
             userController.logoutUser();
         });
 
+        this.get('#/search/:searchedWord', function () {
+            searchController.loadSearchData(this.params["searchedWord"]);
+            $('#searchedText').val('');
+        });
+
         this.get('#/posts/edit/:id',function () {
-            //TODO: change the url in ""
             postController.loadPost(this.params['id']);
         });
 
@@ -88,11 +92,11 @@
 
         this.bind('addCommentClicked', function (event,data) {
             commentController.addComment(data);
-        })
+        });
 
         this.bind('searchButtonClicked', function (event,data) {
-            searchController.loadSearchData(data);
-        })
+            location.hash = '#/search/' + data;
+        });
 
     });
 

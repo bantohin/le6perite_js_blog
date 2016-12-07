@@ -72,8 +72,6 @@ class PostView {
                 newDiv.appendTo(commentsList);
             }
 
-
-            //TODO: deleteComment() -> Model
             function deleteComment() {
                 let _botonaEDis = this;
                 let deleteId = $(this).attr('my-id');
