@@ -93,6 +93,11 @@ body{
     background: white;
 }
 
+#top-three-posts h4{
+    margin-bottom: 1px;
+    display: inline-block;
+}
+
 #top-three-posts a{
     font-family: "Comic Sans MS";
     color:deepskyblue;
@@ -117,6 +122,12 @@ body{
     padding: 10px;
     background: white;
     color:deepskyblue;
+}
+
+.tags{
+    display: inline-block;
+    margin: 5px;
+    margin-top: 0px;
 }
 
 #tagP{
