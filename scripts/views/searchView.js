@@ -4,7 +4,6 @@ class SearchView {
 
     displayPostTitles(data) {
         $('#app').empty();
-        console.log(data);
         $.get('templates/searchResults-template.html', function (template) {
             let renderedHtml = Mustache.render(template);
             $('#app').html(renderedHtml);
