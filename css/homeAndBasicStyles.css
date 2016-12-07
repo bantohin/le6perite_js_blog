@@ -25,24 +25,30 @@ a{
 }
 
 #loadingBox {
-    background: #7CB3E9;
+    background: #ffffff;
+    color: #5bdbff;
 }
 
 #infoBox {
-    background: #393;
+    background: #54db31;
 }
 
 #errorBox {
-    background: #F50;
+    background: #ff0030;
 }
 
 header {
+    padding: 10px;
     border-radius: 10px;
     background: #00d5ff;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #FFFFFF;
 }
 
 header a{
     font-family: "Comic Sans MS";
+    font-size: 18px;
     color: white;
     margin-left: 10px;
     margin-right: 10px;
@@ -57,12 +63,25 @@ header div a:hover{
     color: #1687ff;
 }
 
+#searchedText{
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#searchEngine{
+    border: solid;
+    border-color: #FFFFFF;
+    padding: 5px;
+    background-color: #00d5ff;
+    border-radius: 10px
+}
+
 body{
     background: #5bdbff;
 }
 #welcome-blog{
     display: inline;
-    color: deepskyblue;
+    color: #00bfff;
     background: white;
     border-radius: 20px;
     padding: 10px;

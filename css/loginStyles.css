@@ -9,9 +9,13 @@
     display: inline-flex;
     border-radius: 20px;
     padding: 20px;
+    padding-top: 12px;
 }
 
 #loginForm{
+    display: inline-block;
+    min-width: 350px;
+    padding-top: 20px;
     background: white;
     border-radius: 50px;
 }
@@ -21,7 +25,16 @@
     color:deepskyblue;
     text-align: center;
     background-color: white;
-    padding: 5px;
+    padding: 10px;
     margin: 10px;
     font-size: 1.0em;
+    border: none;
+    width: 80px;
+}
+
+#login-btn:hover{
+    background-color: #5bdbff;
+    border: none;
+    color: #ffffff;
+    border-radius: 20px;
 }

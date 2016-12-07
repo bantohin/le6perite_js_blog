@@ -1,4 +1,41 @@
 #posts{
     text-align: center;
-
+    border-radius: 50px;
+    margin-top: 20px;
+    background-color: #FFFFFF;
+    padding: 5px;
+    display: block;
+    font-family: "Comic Sans MS";
+    color: deepskyblue;
 }
+
+#posts #text{
+    color: black;
+}
+
+h2{
+    font-size: 36px;
+}
+
+#posts button{
+    background-color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    color: #5bdbff;
+    border-radius: 20px;
+    width: 90px;
+    font-weight: bold;
+    outline: none;
+}
+
+#posts button:hover{
+    background-color: #5bdbff;
+    border: none;
+    padding: 10px;
+    color: #ffffff;
+    border-radius: 20px;
+    width: 90px;
+}
+
+
+

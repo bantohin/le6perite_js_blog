@@ -1,0 +1,64 @@
+#createPost{
+    margin-top: 15px;
+    display: inline-block;
+    min-width: 350px;
+    padding-top: 20px;
+    background: white;
+    border-radius: 50px;
+}
+
+#createPost-btn{
+    border-radius: 7px;
+    color:deepskyblue;
+    text-align: center;
+    background-color: white;
+    padding: 5px;
+    margin: 10px;
+    font-size: 1.0em;
+}
+
+#createPost{
+    font-family: "Comic Sans MS";
+    color:deepskyblue;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    padding-top: 12px;
+}
+
+#createPost input[type=button]{
+    background-color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    color: #5bdbff;
+    border-radius: 20px;
+    width: 120px;
+    font-weight: bold;
+    margin-bottom:5px;
+}
+
+#createPost input[type=button]:hover{
+    background-color: #5bdbff;
+    border: none;
+    padding: 10px;
+    color: #ffffff;
+    border-radius: 20px;
+    width: 120px;
+    margin-bottom:5px;
+}
+
+#createPost-textarea{
+    width: 500px;
+    overflow: hidden;
+    border-radius: 30px;
+    height:100px;
+    padding: 10px;
+}
+
+#createPost input[type=text]{
+    display: block;
+    width: 500px;
+    background: white;
+    border-radius: 50px;
+
+}

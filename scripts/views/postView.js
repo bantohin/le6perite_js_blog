@@ -56,7 +56,7 @@ class PostView {
         $(document).ready(function () {
             let commentsList = $('<div>');
             for(let each of comments){
-                let newDiv = $('<div>');
+                let newDiv = $('<div class="comments">');
                 let p = $('<p>');
                 let i = $('<i>');
                 i.text(each.author);
