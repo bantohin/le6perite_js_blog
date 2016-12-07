@@ -56,17 +56,22 @@ class PostController {
                         views: 0,
                         image: $('#createPost input[name=image]').val(),
                     };
-                    _self.model.postPost(postData)
-                        .then(function () {
-                            _self.model.getPosts()
-                                .then(function (successData) {
-                                    _self.view.showPosts(successData);
-                                })
-                                .catch(ajaxError);
-                            showInfo("Post created.");
-                            location.hash = "#/posts"
-                        })
-                        .catch(ajaxError);
+
+                    if(postData.title == "" || postData.text == ""){
+                        showError('You must include at least title and content in your post');
+                    }else{
+                        _self.model.postPost(postData)
+                            .then(function () {
+                                _self.model.getPosts()
+                                    .then(function (successData) {
+                                        _self.view.showPosts(successData);
+                                    })
+                                    .catch(ajaxError);
+                                showInfo("Post created.");
+                                location.hash = "#/posts"
+                            })
+                            .catch(ajaxError);
+                    }
                 });
             })
 

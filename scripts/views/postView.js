@@ -56,7 +56,7 @@ class PostView {
         $(document).ready(function () {
             let commentsList = $('<div>');
             for(let each of comments){
-
+                let newDiv = $('<div>');
                 let p = $('<p>');
                 let i = $('<i>');
                 i.text(each.author);
@@ -65,11 +65,13 @@ class PostView {
                 let deleteBtn = $('<input type="button" value="Delete comment"/>');
                 deleteBtn.attr('my-id',each._id);
                 deleteBtn.click(deleteComment);
-                p.appendTo(commentsList);
+                p.appendTo(newDiv);
                 if(sessionStorage.getItem('id') == each._acl.creator){
-                    deleteBtn.appendTo(commentsList);
+                    deleteBtn.appendTo(newDiv);
                 }
+                newDiv.appendTo(commentsList);
             }
+
 
             //TODO: deleteComment() -> Model
             function deleteComment() {

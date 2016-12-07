@@ -6,12 +6,17 @@ class CommentController{
 
     addComment(data){
         let _self = this;
-        _self.model.postComment(data)
-            .then(function (successData) {
-                location.reload()
-                //TODO: mazno vkarvane na komentar
-            })
-            .catch(ajaxError);
+        if(data.text != ""){
+            _self.model.postComment(data)
+                .then(function (successData) {
+                    location.reload();
+                    //TODO: fadeIn() na komentar
+                })
+                .catch(ajaxError);
+        }
+        else {
+            showError("You cannot post empty comment");
+        }
     }
 
     loadComments(id){

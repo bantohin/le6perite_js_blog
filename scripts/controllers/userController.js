@@ -14,16 +14,21 @@ class UserController {
                     let username = $('#app').find('#login input[name=username]').val();
                     let password = $('#app').find('#login input[name=password]').val();
                     let userObj = {username: username, password: password};
-                    _self.model.loginUser(userObj)
-                        .then(function (successData) {
-                            sessionStorage.setItem('authToken',successData._kmd.authtoken);
-                            sessionStorage.setItem('username',successData.username);
-                            sessionStorage.setItem('id',successData._id);
-                            showHideHeaderButtons();
-                            showInfo("Successfully logged in");
-                            location.hash = '#/home';
-                        })
-                        .catch(ajaxError);
+
+                    if((username == "") || (password=="")){
+                        showError('You must fill all fields');
+                    }else {
+                        _self.model.loginUser( userObj )
+                            .then( function (successData) {
+                                sessionStorage.setItem( 'authToken', successData._kmd.authtoken );
+                                sessionStorage.setItem( 'username', successData.username );
+                                sessionStorage.setItem( 'id', successData._id );
+                                showHideHeaderButtons();
+                                showInfo( "Successfully logged in" );
+                                location.hash = '#/home';
+                            } )
+                            .catch( ajaxError );
+                    }
                 })
             })
 
@@ -36,7 +41,7 @@ class UserController {
             .then(function (successData) {
                 sessionStorage.clear();
                 showHideHeaderButtons();
-                _self.view.logoutUser()
+                _self.view.logoutUser();
                 showInfo("Successfully logged out");
             })
             .catch(ajaxError);
@@ -55,16 +60,20 @@ class UserController {
                     let password = $( '#app' ).find( '#register input[name=password]' ).val();
                     let userObj = {username: username, password: password};
 
-                    _self.model.registerUser( userObj )
-                        .then( function (successData) {
-                            sessionStorage.setItem('authToken', successData._kmd.authtoken);
-                            sessionStorage.setItem('username', successData.username);
-                            sessionStorage.setItem('id', successData._id);
-                            location.hash = '#/home';
-                            showHideHeaderButtons();
-                            showInfo("Successfully registered");
-                        })
-                        .catch(ajaxError);
+                    if((username == "") || (password=="")){
+                        showError('You must fill all fields');
+                    }else{
+                        _self.model.registerUser( userObj )
+                            .then( function (successData) {
+                                sessionStorage.setItem('authToken', successData._kmd.authtoken);
+                                sessionStorage.setItem('username', successData.username);
+                                sessionStorage.setItem('id', successData._id);
+                                location.hash = '#/home';
+                                showHideHeaderButtons();
+                                showInfo("Successfully registered");
+                            })
+                            .catch(ajaxError);
+                    }
                 });
             })
 
