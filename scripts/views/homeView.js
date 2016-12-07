@@ -37,8 +37,9 @@ class HomeView {
                 for(let each of divs){
                     for (let tag of _self.tags) {
                         if(tag.posts_id.includes($(each).attr('this-id'))){
-                            let p = $('<p class="tags">');
+                            let p = $('<a class="tags">');
                             p.text(tag.text);
+                            p.attr('href','#/search/' + tag.text);
                             p.appendTo(each);
                         }
                     }
